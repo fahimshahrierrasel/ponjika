@@ -1,0 +1,32 @@
+{
+  "name": "ponjika",
+  "version": "0.0.1",
+  "description": "Bengali ponjika based on gregorian date",
+  "keywords": [
+    "ponjika",
+    "bengali-calendar"
+  ],
+  "author": "fahimshahrierrasel",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "tslint": "^6.1.3",
+    "typescript": "^4.6.3"
+  }
+}

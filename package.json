@@ -4,26 +4,28 @@
   "description": "Bengali ponjika based on gregorian date",
   "keywords": [
     "ponjika",
-    "bengali-calendar"
+    "bengali-calendar",
+    "bengali calendar"
   ],
   "author": "fahimshahrierrasel",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist",
-    "tsconfig.json"
+    "lib/*"
   ],
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "rollup --config",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
+    "rollup": "^2.70.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.7",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "tslint": "^6.1.3",

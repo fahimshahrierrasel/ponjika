@@ -1,14 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "sourceMap": true,
+    "emitDeclarationOnly": true,
     "declaration": true,
     "esModuleInterop": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "strict": true,
+    "declarationDir": "lib/dts"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/test/*"]
+  "exclude": ["node_modules", "**/test/*", "lib"]
 }

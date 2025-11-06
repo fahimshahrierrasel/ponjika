@@ -5,13 +5,31 @@
   "keywords": [
     "ponjika",
     "bengali-calendar",
-    "bengali calendar"
+    "bengali calendar",
+    "bangla calendar",
+    "bengali date converter",
+    "deno",
+    "bun"
   ],
   "author": "fahimshahrierrasel",
   "license": "MIT",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "types": "lib/index.d.ts",
+  "browser": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "browser": "./lib/index.js",
+      "bun": "./lib/esm/index.js",
+      "deno": "./lib/esm/index.js",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js",
+      "default": "./lib/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
   "files": [
     "lib/*"
   ],

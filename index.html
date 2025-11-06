@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ponjika - Bengali Calendar Converter Demo. Convert Gregorian dates to Bengali calendar dates.">
+    <title>Ponjika - Bengali Calendar Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .date-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .date-display h2 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .date-display .date {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .bengali-date {
+            font-family: 'Kalpurush', 'SolaimanLipi', 'Segoe UI', sans-serif;
+            font-size: 2.2em;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .bengali-text {
+            font-family: 'Kalpurush', 'SolaimanLipi', 'Segoe UI', sans-serif;
+        }
+
+        .links {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .links a:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .github-link {
+            background: #24292e !important;
+        }
+
+        .github-link:hover {
+            background: #000 !important;
+        }
+
+        .npm-link {
+            background: #cb3837 !important;
+        }
+
+        .npm-link:hover {
+            background: #a82c2c !important;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .date-display .date {
+                font-size: 1.5em;
+            }
+
+            .bengali-date {
+                font-size: 1.7em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        .clock {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .features {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+
+        .features h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗓️ Ponjika</h1>
+        <p class="subtitle">Bengali Calendar Converter</p>
+
+        <div class="date-display">
+            <h2>Current Date & Time</h2>
+            <div class="clock" id="clock"></div>
+        </div>
+
+        <div class="date-display">
+            <h2>English Date</h2>
+            <div class="date" id="english-date"></div>
+        </div>
+
+        <div class="date-display">
+            <h2>বাংলা তারিখ (Bengali Date)</h2>
+            <div class="date bengali-date" id="bengali-date"></div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-card">
+                <h3>Bengali Day</h3>
+                <p class="bengali-text" id="bengali-day"></p>
+            </div>
+            <div class="info-card">
+                <h3>Bengali Month</h3>
+                <p class="bengali-text" id="bengali-month"></p>
+            </div>
+            <div class="info-card">
+                <h3>Bengali Year</h3>
+                <p class="bengali-text" id="bengali-year"></p>
+            </div>
+            <div class="info-card">
+                <h3>Season (ঋতু)</h3>
+                <p class="bengali-text" id="bengali-season"></p>
+            </div>
+            <div class="info-card">
+                <h3>Phonetic Date</h3>
+                <p id="phonetic-date"></p>
+            </div>
+            <div class="info-card">
+                <h3>Numeric Date</h3>
+                <p id="numeric-date"></p>
+            </div>
+        </div>
+
+        <div class="features">
+            <h3>Multi-Runtime Support</h3>
+            <ul>
+                <li><strong>Node.js</strong> - CommonJS & ES Modules</li>
+                <li><strong>Browser</strong> - UMD, Script Tag, ES Modules</li>
+                <li><strong>Deno</strong> - Native ES Module support</li>
+                <li><strong>Bun</strong> - Optimized ES Module support</li>
+                <li><strong>TypeScript</strong> - Full type definitions included</li>
+                <li><strong>Zero Dependencies</strong> - Lightweight and fast</li>
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/fahimshahrierrasel/ponjika" class="github-link" target="_blank">
+                GitHub
+            </a>
+            <a href="https://www.npmjs.com/package/ponjika" class="npm-link" target="_blank">
+                npm Package
+            </a>
+            <a href="#" onclick="copyInstallCommand(); return false;">
+                Copy Install Command
+            </a>
+        </div>
+    </div>
+
+    <!-- Load Ponjika library from CDN (using unpkg.com) -->
+    <script src="https://unpkg.com/ponjika@latest/lib/index.js"></script>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            // Update clock
+            const clockElement = document.getElementById('clock');
+            clockElement.textContent = now.toLocaleString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+
+            // Create Ponjika instance
+            const ponjika = new window.ponjika.Ponjika(now);
+            const details = ponjika.getDetails();
+
+            // Update English date
+            document.getElementById('english-date').textContent = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Update Bengali date
+            document.getElementById('bengali-date').textContent = ponjika.getBengaliDate();
+
+            // Update info cards
+            document.getElementById('bengali-day').textContent = details.bnDay;
+            document.getElementById('bengali-month').textContent = details.bnMonth;
+            document.getElementById('bengali-year').textContent = details.bnYear;
+            document.getElementById('bengali-season').textContent = details.season;
+            document.getElementById('phonetic-date').textContent = ponjika.getBengaliPhoneticDate();
+
+            const numeral = ponjika.getDateNumeral();
+            document.getElementById('numeric-date').textContent =
+                `${numeral.date}/${numeral.month}/${numeral.year}`;
+        }
+
+        function copyInstallCommand() {
+            const command = 'npm install ponjika';
+            navigator.clipboard.writeText(command).then(() => {
+                alert('Install command copied to clipboard: ' + command);
+            }).catch(err => {
+                prompt('Copy this command:', command);
+            });
+        }
+
+        // Update immediately
+        updateDateTime();
+
+        // Update every second
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>

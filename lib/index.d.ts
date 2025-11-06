@@ -55,4 +55,5 @@ declare class Ponjika {
     getDateNumeral: () => IDateNumeral;
     getDetails: () => IPonjika;
 }
-export { enToBnNumber, Ponjika };
+
+export { Ponjika, enToBnNumber };
